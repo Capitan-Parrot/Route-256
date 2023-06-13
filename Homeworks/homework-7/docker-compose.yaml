@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: ozon
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    ports:
+      - "5432:5432"
+  cache:
+    image: memcached:1.6.7
+    command:
+      - '-m 1024'
+      - '-c 1024'
+      - '-t 2'
+    ports:
+      - "11211:11211"

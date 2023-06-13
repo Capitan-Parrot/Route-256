@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package student;
+option go_package = "./;pb";
+
+service StudentService {
+  // Создает нового студента
+  rpc CreateStudent (CreateStudentRequest) returns (CreateStudentResponse) {}
+  // Получение записи о студенте по ID
+  rpc GetStudent (GetStudentRequest) returns (GetStudentResponse) {}
+  // Обновляет запись о студенте по ID 
+  rpc UpdateStudent (UpdateStudentRequest) returns (UpdateStudentResponse) {}
+}
+
+message CreateStudentRequest {
+  string name = 1;
+  string course_program = 2;
+}
+
+message CreateStudentResponse {
+  uint64 id = 1;
+}
+
+message GetStudentRequest {
+  uint64 id = 1;
+}
+
+message GetStudentResponse {
+  uint64 id = 1;
+  string name = 2 ;
+  string course_program = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message UpdateStudentRequest {
+  uint64 id = 1;
+  string name = 2;
+  string course_program = 3;
+}
+
+message UpdateStudentResponse {
+  bool ok = 1;
+}
+
+
